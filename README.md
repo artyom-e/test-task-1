@@ -2,7 +2,7 @@
 
 ## Requirements
 
-1. **API Endpoint:** Develop a single API endpoint #submit that accepts a `POST`
+1. **API Endpoint:** Develop a single API endpoint `/api/submit` that accepts a `POST`
 request with the following JSON payload structure: 
 ```json
 {

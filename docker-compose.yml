@@ -1,13 +1,24 @@
 services:
   php:
-    image: php:8.3
+    build: ./docker/php
     volumes:
       - ./:/var/www/html
     working_dir: /var/www/html
     ports:
       - 8000:8000
     command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
+
   composer:
     image: composer:latest
     volumes:
       - ./:/app
+
+  db:
+      image: postgres:latest
+      volumes:
+          - ./docker/db/data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_PASSWORD: root
+        POSTGRES_USER: root
+        POSTGRES_DB: test_task_1
+

@@ -1,0 +1,13 @@
+services:
+  php:
+    image: php:8.3
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - 8000:8000
+    command: ["php", "artisan", "serve", "--host", "0.0.0.0"]
+  composer:
+    image: composer:latest
+    volumes:
+      - ./:/app

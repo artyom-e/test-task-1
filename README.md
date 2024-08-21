@@ -1,5 +1,24 @@
 # Test Task 1 (Simple Laravel API with Job Queue, Database, and Event Handling)
 
+## Set Up and Run
+
+1. Clone repository
+2. Run `docker-compose up -d`
+3. Copy .env.example, rename to .env and configure
+4. Run `docker-compose exec php php artisan migrate`
+5. Run `docker-compose exec php php artisan test` to running tests
+6. Go to terminal and send curl request 
+```bash
+curl --location 'http://127.0.0.1:8000/api/submit' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "message": "test message"
+}'
+```
+
 ## Requirements
 
 1. **API Endpoint:** Develop a single API endpoint `/api/submit` that accepts a `POST`

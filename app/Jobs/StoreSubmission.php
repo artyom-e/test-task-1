@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Data\SubmissionData;
 use App\Events\SubmissionSaved;
 use App\Models\Submission;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,7 +15,7 @@ class StoreSubmission implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(private array $submissionData)
+    public function __construct(private SubmissionData $submissionData)
     {
         //
     }
@@ -24,7 +25,7 @@ class StoreSubmission implements ShouldQueue
      */
     public function handle(): void
     {
-        $submission = Submission::create($this->submissionData);
+        $submission = Submission::create($this->submissionData->toArray());
         SubmissionSaved::dispatch($submission);
     }
 }

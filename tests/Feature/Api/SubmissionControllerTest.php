@@ -2,17 +2,17 @@
 
 namespace Feature\Api;
 
+use App\Http\Controllers\Api\SubmissionController;
 use App\Jobs\StoreSubmission;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\Http\Controllers\Api\SubmissionController
- */
+#[CoversClass(SubmissionController::class)]
 class SubmissionControllerTest extends TestCase
 {
     use WithFaker;
@@ -24,9 +24,6 @@ class SubmissionControllerTest extends TestCase
         Event::fake();
     }
 
-    /**
-     * @covers ::store
-     */
     #[DataProvider('validationErrorsProvider')]
     public function testValidationErrors(array $payload, array $invalidFields): void
     {
@@ -40,9 +37,6 @@ class SubmissionControllerTest extends TestCase
         Queue::assertNothingPushed();
     }
 
-    /**
-     * @covers ::store
-     */
     #[DataProvider('validationSuccessProvider')]
     public function testValidationSuccess(array $payload): void
     {
